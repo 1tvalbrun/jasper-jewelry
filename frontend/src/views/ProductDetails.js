@@ -1,15 +1,25 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap';
+import axios from 'axios';
 import Rating from '../components/Rating';
-import products from '../products';
 
 const ProductDetails = ({ match }) => {
-  const { Item } = ListGroup;
+  const [product, setProduct] = React.useState({});
   const param = parseInt(match.params.id);
-  const product = products
-    .flatMap((product) => product.items)
-    .find((item) => item.id === param);
+
+  React.useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${param}`);
+
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [param]);
+  const { Item } = ListGroup;
+  // const product = products
+  //   .flatMap((product) => product.items)
+  //   .find((item) => item.id === param);
 
   return (
     <React.Fragment>
