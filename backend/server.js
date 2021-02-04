@@ -1,24 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import products from './data/products.js';
+import connectDB from './config/db.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+
+import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
 
+connectDB();
+
 const app = express();
+
+app.use('/api/products', productRoutes);
 
 app.get('/', (req, res) => {});
 
-app.get('/api/products', (req, res) => {
-  res.json(products);
-});
+app.use(notFound);
 
-app.get('/api/products/:id', (req, res) => {
-  const param = parseInt(req.params.id);
-  const product = products
-    .flatMap((product) => product.items)
-    .find((item) => item.id === param);
-  res.json(product);
-});
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

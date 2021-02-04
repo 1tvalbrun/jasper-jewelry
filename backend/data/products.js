@@ -1,7 +1,6 @@
 const products = [
   // WATCHES
   {
-    _id: 1,
     title: 'Watches',
     routeName: 'watches',
     items: [
@@ -61,7 +60,6 @@ const products = [
   },
   // BRACELETS
   {
-    _id: 2,
     title: 'Bracelets',
     routeName: 'bracelets',
     items: [
@@ -121,7 +119,6 @@ const products = [
   },
   // RINGS
   {
-    _id: 3,
     title: 'Rings',
     routeName: 'rings',
     items: [
@@ -181,7 +178,6 @@ const products = [
   },
   // NECKLACES
   {
-    _id: 4,
     title: 'Necklaces',
     routeName: 'necklaces',
     items: [
